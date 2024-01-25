@@ -1,18 +1,19 @@
 import * as fs from 'node:fs/promises';
 import * as url from 'node:url';
-import * as path from 'node:path'
+import * as path from 'node:path';
+
 
 const create = async () => {
     // Write your code here 
     const __DIRNAME = url.fileURLToPath(new URL('.', import.meta.url));
-    const FILENAME = 'fresh.txt';
-    const FOLDERNAME = 'files';
+    const FILE_NAME = 'fresh.txt';
+    const FOLDER_NAME = 'files';
     const FLAGS ='wx';
 
-    let pathfile = path.join(__DIRNAME, FOLDERNAME, FILENAME);
+    let pathFile = path.join(__DIRNAME, FOLDER_NAME, FILE_NAME);
     try {
       try {
-        let file = await fs.open(pathfile, FLAGS);
+        let file = await fs.open(pathFile, FLAGS);
         await file.write('I am fresh and young');
         await file.close();
       }
@@ -21,7 +22,7 @@ const create = async () => {
       }
     }
     catch (e) {
-        console.error(e.message);
+      console.error(`${e.name}: ${e.message}`);
     }
 }
 await create();
