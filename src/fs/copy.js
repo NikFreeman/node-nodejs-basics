@@ -1,6 +1,6 @@
 import * as fs from 'node:fs/promises';
 import * as url from 'node:url';
-import * as path from 'node:path'
+import * as path from 'node:path';
 
 
 const copy = async () => {
