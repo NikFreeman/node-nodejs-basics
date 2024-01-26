@@ -10,10 +10,10 @@ const create = async () => {
     const FOLDER_NAME = 'files';
     const FLAGS ='wx';
 
-    let pathFile = path.join(__DIRNAME, FOLDER_NAME, FILE_NAME);
+    const pathFile = path.join(__DIRNAME, FOLDER_NAME, FILE_NAME);
     try {
       try {
-        let file = await fs.open(pathFile, FLAGS);
+        const file = await fs.open(pathFile, FLAGS);
         await file.write('I am fresh and young');
         await file.close();
       }
