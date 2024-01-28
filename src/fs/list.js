@@ -6,7 +6,7 @@ import * as path from 'node:path';
 const list = async () => {
     // Write your code here
     const __DIRNAME = url.fileURLToPath(new URL('.', import.meta.url));
-    const SOURCE_FOLDER = 'filess';
+    const SOURCE_FOLDER = 'files';
     
     try {
         try{
