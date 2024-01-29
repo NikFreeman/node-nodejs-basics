@@ -1,19 +1,18 @@
-import * as fs from 'node:fs/promises';
-import * as url from 'node:url';
-import * as path from 'node:path';
+import {open} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {join} from 'node:path';
 
 
 const create = async () => {
     // Write your code here 
-    const __DIRNAME = url.fileURLToPath(new URL('.', import.meta.url));
+    const __DIRNAME = fileURLToPath(new URL('.', import.meta.url));
     const FILE_NAME = 'fresh.txt';
     const FOLDER_NAME = 'files';
     const FLAGS ='wx';
 
-    const pathFile = path.join(__DIRNAME, FOLDER_NAME, FILE_NAME);
     try {
       try {
-        const file = await fs.open(pathFile, FLAGS);
+        const file = await open(join(__DIRNAME, FOLDER_NAME, FILE_NAME), FLAGS);
         await file.write('I am fresh and young');
         await file.close();
       }

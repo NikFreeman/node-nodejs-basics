@@ -1,20 +1,21 @@
-import * as fs from 'node:fs/promises';
-import * as url from 'node:url';
-import * as path from 'node:path';
+import {access, mkdir, readdir,copyFile, constants} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {join} from 'node:path';
 
 
 const copy = async () => {
   // Write your code here 
-  const __DIRNAME = url.fileURLToPath(new URL('.', import.meta.url));
+  const __DIRNAME = fileURLToPath(new URL('.', import.meta.url));
   const SOURCE_FOLDER = 'files';
   const DESTINATION_FOLDER = 'files_copy';
+
   try {
     try {
-    await fs.access(path.join(__DIRNAME,SOURCE_FOLDER));
-    await fs.mkdir(path.join(__DIRNAME,DESTINATION_FOLDER));
-    let files = await fs.readdir(path.join(__DIRNAME, SOURCE_FOLDER));
+    await access(join(__DIRNAME,SOURCE_FOLDER));
+    await mkdir(join(__DIRNAME,DESTINATION_FOLDER));
+    let files = await readdir(join(__DIRNAME, SOURCE_FOLDER));
       for (let file of files){
-        await fs.copyFile(path.join(__DIRNAME,SOURCE_FOLDER,file),path.join(__DIRNAME,DESTINATION_FOLDER,file), fs.COPYFILE_EXCL);
+        await copyFile(join(__DIRNAME,SOURCE_FOLDER,file),join(__DIRNAME,DESTINATION_FOLDER,file), constants.COPYFILE_EXCL);
       }      
     }
     catch {      
